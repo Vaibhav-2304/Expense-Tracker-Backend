@@ -1,21 +1,41 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import authRoute from './routes/auth.js';
+import mongoose from 'mongoose';
 
-// Load environment variables
+import authRouter from "./routes/auth.route.js";
+
 dotenv.config();
 
 const app = express();
-app.use(express.json());
+const router = express.Router();
 
-// Middleware
-app.use('/api/auth', authRoute);
+app.use(express.json()); // Middleware that parses the recieved request body into json.
+// app.use(cors()); 
 
-// Database connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// Attach the router to the app
+app.use('/', router);
+app.use("/api", authRouter);
+
+router.get('/', (req, res) => {
+  res.status(200).send('API is running');
+});
+
+const PORT = process.env.PORT || 5000;
+
+const password = "iMpmtWPWciVciMuX";
+const clusterName = "Cluster0";
+const dbName = "ExpenseDB";
+const mongoUrl = `mongodb+srv://rishiqwerty01:${password}@${clusterName}.ewhvozy.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=${clusterName}`; // backtick is used for string interpolation
+
+app.listen(PORT, (err) => {
+  if (err) {
+    console.error('Error starting server:', err);
+    return;
+  }
+
+  mongoose.connect(mongoUrl)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('Database connection error:', err));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  console.log(`Server running on port ${PORT}`);
+});
