@@ -2,7 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import { getExpenses, addExpense, updateExpense, deleteExpense } from '../controllers/expense.controller.js';
 
-const userRouter = express.Router();
+const expenseRouter = express.Router();
 
 const secretKey = process.env.JWT_SECRET || "qwerty01";
 
@@ -26,11 +26,11 @@ const authMiddleware = (req, res, next) => {
     });
 };
 
-userRouter.use(authMiddleware);
+expenseRouter.use(authMiddleware);
 
-userRouter.get('/expense', getExpenses);
-userRouter.post('/expense', addExpense);
-userRouter.put('/expense', updateExpense);
-userRouter.delete('/expense', deleteExpense);
+expenseRouter.get('/expense', getExpenses);
+expenseRouter.post('/expense', addExpense);
+expenseRouter.put('/expense', updateExpense);
+expenseRouter.delete('/expense', deleteExpense);
 
-export default userRouter;
+export default expenseRouter;

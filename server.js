@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 import authRouter from "./routes/auth.route.js";
+import expenseRouter from "./routes/expense.route.js";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json()); // Middleware that parses the recieved request body int
 // Attach the router to the app
 app.use('/', router);
 app.use("/api", authRouter);
+app.use("/api", expenseRouter);
 
 router.get('/', (req, res) => {
   res.status(200).send('API is running');

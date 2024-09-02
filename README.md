@@ -109,15 +109,16 @@ This is the backend repository for the Expense Tracker application. It provides 
         Request-Body : {
             "_id" : "6619229666eafd5b83ba528e",
             "title" : "This is a new title",
-            "content" : "This is a new content"
+            "category" : "This is a new category",
+            "amount" : 330
         }
         
-        Success Response : {"message": "Note updated successfully"}
+        Success Response : {"message": "Expense updated successfully"}
         
         Error Response : {"message" : "Error Message"}
 
-5.  [  /api/expense?id='notesId'  ] ____________ { DELETE }
+5.  [  /api/expense?id='ExpenseId'  ] ____________ { DELETE }
         
-        Success Response : {"message": "Note Deleted successfully"}
+        Success Response : {"message": "Expense Deleted successfully"}
         
         Error Response : {"message" : "Error Message"} 
