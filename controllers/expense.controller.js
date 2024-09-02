@@ -5,10 +5,10 @@ export const getExpenses = async (req, res) => {
     try{
         const userId = req.userId;
         const user = await User.findById(userId);
-    
+        console.log(user);
         let myList = [];
-        for(let i = 0; i<user.expenses_list.length; i++){
-            const myExpense = await Expense.findById(user.expenses_list[i]);
+        for(let i = 0; i<user.expense_list.length; i++){
+            const myExpense = await Expense.findById(user.expense_list[i]);
             if(myExpense) {myList.push(myExpense); }
         }
 
@@ -72,7 +72,7 @@ export const addExpense = async(req, res) => {
 
         await User.findByIdAndUpdate(
             userId,
-            { $push: { expenses_list: expenseId } },
+            { $push: { expense_list: expenseId } },
             { new: true, useFindAndModify: false }
         );
 

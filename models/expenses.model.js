@@ -8,7 +8,7 @@ const ExpenseSchema = mongoose.Schema(
     },
 
     amount : {
-        type: int,
+        type: String,
         required: [true, "Amount cannot be Empty"],
     },
 
