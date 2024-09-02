@@ -21,11 +21,11 @@ export const getExpenses = async (req, res) => {
 
 export const updateExpense = async (req, res) => {
     try {
-        const {_id, title, date, amount, category} = req.body;
+        const {_id, title, amount, category} = req.body;
 
         const updatedExpense = await Expense.findByIdAndUpdate(
             _id, 
-            { title, date, amount, category }, // Update these fields
+            { title, amount, category }, // Update these fields
             { new: true, runValidators: true } // Options: return the updated object and run schema validators
         );
 

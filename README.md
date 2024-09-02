@@ -60,7 +60,7 @@ This is the backend repository for the Expense Tracker application. It provides 
 
 <br/>
 
-3.  [  /api/notes  ] ____________ { GET }
+3.  [  /api/expense  ] ____________ { GET }
 
         Success Response :
         {
@@ -69,8 +69,9 @@ This is the backend repository for the Expense Tracker application. It provides 
             "data": [
                 {
                     "_id": "6617c14fca774b9f6fde5132",
-                    "title": "This is a title 3 ",
-                    "content": "This is a content 2",
+                    "title": "This is a title",
+                    "amount": 100,
+                    "category" : "Bill",
                     "createdAt": "2024-04-11T10:54:07.014Z",
                     "updatedAt": "2024-04-11T10:54:07.014Z",
                     "__v": 0
@@ -80,16 +81,17 @@ This is the backend repository for the Expense Tracker application. It provides 
 
         Error Response : {"message" : "Error Message"}
 
-4.  [  /api/notes  ] ____________ { POST }
+4.  [  /api/expense  ] ____________ { POST }
 
         Request-Body : {
             "title" : "This is a title",
-            "content" : "This is a content",
+            "amount" : 231,
+            "category" : "Food"
         }
 
         Success Response : 
         {
-            "message": "Note added successfully",
+            "message": "Expense added successfully",
             "data": {
                 "title": "This is a title 3 ",
                 "content": "This is a content.... 2",
@@ -102,7 +104,7 @@ This is the backend repository for the Expense Tracker application. It provides 
         
         Error Response : {"message" : "Error Message"}
 
-4.  [  /api/notes  ] ____________ { PUT }
+4.  [  /api/expense  ] ____________ { PUT }
 
         Request-Body : {
             "_id" : "6619229666eafd5b83ba528e",
@@ -114,7 +116,7 @@ This is the backend repository for the Expense Tracker application. It provides 
         
         Error Response : {"message" : "Error Message"}
 
-5.  [  /api/notes?id='notesId'  ] ____________ { DELETE }
+5.  [  /api/expense?id='notesId'  ] ____________ { DELETE }
         
         Success Response : {"message": "Note Deleted successfully"}
         

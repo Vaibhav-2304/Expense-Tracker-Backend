@@ -4,22 +4,17 @@ const ExpenseSchema = mongoose.Schema(
   {
     title : {
       type: String,
-      required: true,
-    },
-
-    date : {
-      type: String,
-      required: true,
+      required: [true, "Title cannot be Empty"],
     },
 
     amount : {
         type: int,
-        required: true,
+        required: [true, "Amount cannot be Empty"],
     },
 
     category : {
         type: String,
-        required: true,
+        required: [true, "Category cannot be Empty"],
     },
 
   },
