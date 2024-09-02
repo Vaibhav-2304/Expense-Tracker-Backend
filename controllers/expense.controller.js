@@ -1,11 +1,11 @@
-import { Expense } from "../models/expenses.model.js";
+import { Expense } from "../models/expense.model.js";
 import { User } from "../models/user.model.js";
 
 export const getExpenses = async (req, res) => {
     try{
         const userId = req.userId;
         const user = await User.findById(userId);
-        console.log(user);
+       
         let myList = [];
         for(let i = 0; i<user.expense_list.length; i++){
             const myExpense = await Expense.findById(user.expense_list[i]);
@@ -21,11 +21,11 @@ export const getExpenses = async (req, res) => {
 
 export const updateExpense = async (req, res) => {
     try {
-        const {_id, title, amount, category} = req.body;
+        const {_id, title, amount, date, category} = req.body;
 
         const updatedExpense = await Expense.findByIdAndUpdate(
             _id, 
-            { title, amount, category }, // Update these fields
+            { title, amount, date, category }, // Update these fields
             { new: true, runValidators: true } // Options: return the updated object and run schema validators
         );
 
@@ -77,7 +77,7 @@ export const addExpense = async(req, res) => {
         );
 
         // Return a response
-        res.status(200).json({message: 'Expense added successfully', data: Expense});
+        res.status(200).json({message: 'Expense added successfully', data: expense});
 
     } catch (e) {
         res.status(500).json({ message: e.message });
