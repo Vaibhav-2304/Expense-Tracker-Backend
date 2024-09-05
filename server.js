@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from "cors";
+import {customLogger} from "./logger.js";
 
 import authRouter from "./routes/auth.route.js";
 import expenseRouter from "./routes/expense.route.js";
@@ -11,7 +13,8 @@ const app = express();
 const router = express.Router();
 
 app.use(express.json()); // Middleware that parses the recieved request body into json.
-// app.use(cors()); 
+app.use(cors()); 
+app.use(customLogger()); // Custom logger middleware
 
 // Attach the router to the app
 app.use('/', router);
@@ -23,11 +26,7 @@ router.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-
-const password = "iMpmtWPWciVciMuX";
-const clusterName = "Cluster0";
-const dbName = "ExpenseDB";
-const mongoUrl = `mongodb+srv://rishiqwerty01:${password}@${clusterName}.ewhvozy.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=${clusterName}`; // backtick is used for string interpolation
+const mongoUrl = process.env.MONGO_URL;
 
 app.listen(PORT, (err) => {
   if (err) {

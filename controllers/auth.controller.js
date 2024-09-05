@@ -1,11 +1,15 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
 import { User } from '../models/user.model.js';
 
-const secretKey = process.env.JWT_SECRET || "qwerty01";
+dotenv.config();
+const secretKey = process.env.JWT_SECRET;
 
 export const register = async (req, res) => {
     try{
+
+        console.log(secretKey);
         
         const { name, email, password } = req.body;
         let existingUser = await User.findOne({ email });

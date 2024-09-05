@@ -4,7 +4,7 @@ import { getExpenses, addExpense, updateExpense, deleteExpense } from '../contro
 
 const expenseRouter = express.Router();
 
-const secretKey = process.env.JWT_SECRET || "qwerty01";
+const secretKey = process.env.JWT_SECRET;
 
 const authMiddleware = (req, res, next) => {
     // Extract the token from the Authorization header
