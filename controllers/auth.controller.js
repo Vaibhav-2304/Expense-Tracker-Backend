@@ -8,8 +8,6 @@ const secretKey = process.env.JWT_SECRET;
 
 export const register = async (req, res) => {
     try{
-
-        console.log(secretKey);
         
         const { name, email, password } = req.body;
         let existingUser = await User.findOne({ email });
