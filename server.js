@@ -34,7 +34,9 @@ app.listen(PORT, (err) => {
     return;
   }
 
-  mongoose.connect(mongoUrl)
+  mongoose.connect(mongoUrl, {
+    ssl: true,
+  })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('Database connection error:', err));
 
